@@ -38,7 +38,7 @@ export class LoginComponent {
         },
         error:(error)=>{
           console.error('error',error);
-          this.errorMessage = 'Spme technical error has occurred'
+          this.errorMessage = 'Some technical error has occurred'
         }
       })
 
