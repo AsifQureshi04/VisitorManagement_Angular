@@ -1,0 +1,35 @@
+<div class="col-md-8">
+    <div class="container mt-4 search-visitor">
+        <div class="heading">
+            <h1>Search visitors beetwen dates</h1>
+        </div>
+        <div class="form">
+            <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col-md-10 mb-4">
+                        <label>From Date</label>
+                        <input type="date" class="form-control" formControlName="fromDate">
+                        <small class="text-danger" *ngIf="isFormSubmitted && f['fromDate'].invalid">
+                            Date is required.
+                        </small>
+                    </div>
+                    <div class="col-md-10 mb-4">
+                        <label>To Date</label>
+                        <input type="date" class="form-control" formControlName="toDate">
+                        <small class="text-danger" *ngIf="isFormSubmitted && f['toDate'].invalid">
+                            Date is required.
+                        </small>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="table-wrapper">
+        <ng-container *ngIf="visitorsList.length">
+          <div class="table">
+            <app-shared-table [tableData]="visitorsList" [columns]="columns" [pageSize]="5"></app-shared-table>
+        </div>
+        </ng-container>
+    </div>
+</div>

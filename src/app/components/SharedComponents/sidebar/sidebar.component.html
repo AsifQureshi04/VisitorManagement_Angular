@@ -1,0 +1,40 @@
+<div class="sidebar-slider" [class.sidebar-collapsed]="!sidebarShow">
+    <div class="sidebar-close" (click)="toggleSidebar()">
+      <i class="bi toggle-icon" [ngClass]="sidebarShow ? 'bi-x' : 'bi-list'"></i>
+    </div>
+  
+    <div class="sidebar-content">
+      <div *ngFor="let item of menu" class="sidebar-item">
+        
+        <div *ngIf="!item.hasDropdown" (click)="redirectTo(item.route)">
+          <i class="bi" [ngClass]="item.icon"></i>
+          <span *ngIf="sidebarShow">{{ item.name }}</span>
+        </div>
+  
+        <div *ngIf="item.hasDropdown" class="role-management">
+          <div class="role-main">
+            <div class="role-label" (click)="redirectTo(item.route)">
+              <i class="bi" [ngClass]="item.icon"></i>
+              <span *ngIf="sidebarShow">{{ item.name }}</span>
+            </div>
+            <i *ngIf="sidebarShow"
+               class="bi toggle-icon"
+               [ngClass]="{
+                 'bi-caret-down-fill': !roleDropdown,
+                 'bi-caret-up-fill': roleDropdown
+               }"
+               (click)="toggleRoleDropdown()">
+            </i>
+          </div>
+  
+          <div class="role-subitems" *ngIf="roleDropdown && sidebarShow">
+            <div *ngFor="let sub of item.children" class="role-subitem" (click)="redirectTo(sub.route)">
+              <i class="bi" [ngClass]="sub.icon"></i>
+              <span>{{ sub.name }}</span>
+            </div>
+          </div>
+        </div>  
+      </div>
+    </div>
+  </div>
+  

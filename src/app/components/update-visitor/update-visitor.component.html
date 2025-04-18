@@ -1,0 +1,99 @@
+<!-- <app-navbar></app-navbar>
+<app-sidebar></app-sidebar> -->
+<div id="print-section">
+    <h1>Update Visitor Details</h1>
+    <div class="col-md-8">
+        <div class="container mt-4">
+            <form [formGroup]="visitForm" id="visitForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <label>First Name</label>
+                        <input type="text" class="form-control" formControlName="firstName" />
+                        <small class="text-danger" *ngIf="isFormSubmitted && f['firstName'].invalid">
+                            First Name is required (min 2 char).
+                        </small>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" formControlName="lastName" />
+                        <small class="text-danger" *ngIf="isFormSubmitted && f['lastName'].invalid">
+                            Last Name is required (min 2 char).
+                        </small>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label>Email</label>
+                        <input type="email" class="form-control" formControlName="emailId" />
+                        <small class="text-danger" *ngIf="isFormSubmitted && f['emailId'].invalid">
+                            Valid email is required
+                        </small>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label>Phone Number</label>
+                        <input type="phoneNumber" class="form-control" formControlName="contactNumber" />
+                        <small class="text-danger" *ngIf="isFormSubmitted && f['contactNumber'].invalid">
+                            Enter a valid 10-digit phone number
+                        </small>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label>Address</label>
+                        <textarea class="form-control" formControlName="address"></textarea>
+                        <small class="text-danger" *ngIf="isFormSubmitted && f['address'].invalid">
+                            Address is required
+                        </small>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label>Whome To meet</label>
+                        <input type="text" class="form-control" formControlName="whomToMeet" />
+                        <small class="text-danger" *ngIf="isFormSubmitted && f['whomToMeet'].invalid">
+                            The field is required
+                        </small>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label>Department</label>
+                        <input type="text" class="form-control" formControlName="department" />
+                        <small class="text-danger" *ngIf="isFormSubmitted && f['department'].invalid">
+                            Departmet is required
+                        </small>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label>Reason to Meet</label>
+                        <input type="text" class="form-control" formControlName="reasonToMeet" />
+                        <small class="text-danger" *ngIf="isFormSubmitted && f['reasonToMeet'].invalid">
+                            Reason is required
+                        </small>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label>Visit Date</label>
+                        <input type="date" class="form-control" formControlName="visitDate" />
+                        <small class="text-danger" *ngIf="isFormSubmitted && f['visitDate'].invalid">
+                            Date is required
+                        </small>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label>In-Time</label>
+                        <input type="time" class="form-control" formControlName="inTime" />
+                        <small class="text-danger" *ngIf="isFormSubmitted && f['inTime'].invalid">
+                            Time is required
+                        </small>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label>Out-Time</label>
+                        <input type="time" class="form-control" formControlName="exitTime" />
+                        <small class="text-danger" *ngIf="isFormSubmitted && f['exitTime'].invalid">
+                            Time is required
+                        </small>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-primary" (click)="printPage()">
+                        <i class="bi bi-printer"></i> Print
+                    </button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

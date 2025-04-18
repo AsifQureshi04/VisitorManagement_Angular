@@ -1,0 +1,56 @@
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-left: 200px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f4f4f4;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: end;
+    gap: 2px;
+    margin-top:5px;
+    margin-left: 600px
+  }
+  
+  button {
+    padding: 5px 10px;
+    cursor: pointer;
+    border: none;
+    background-color: #eb5022;
+    color: white;
+  }
+  
+  button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+
+  .fa-edit{
+    cursor: pointer; 
+    margin-right: 10px;
+    color: green;
+  }
+
+  .fa-trash{
+    cursor: pointer;
+    color: red;
+  }
+
+  tr:hover{
+    background-color: #f4f4f4;
+  }

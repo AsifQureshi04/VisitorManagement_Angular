@@ -1,0 +1,95 @@
+.sidebar-slider {
+    position: fixed;
+    top: 66px;
+    left: 0;
+    bottom: 0;
+    background-color: #eb5022;
+    width: 250px;
+    transition: all 0.4s ease-in-out !important;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
+  .sidebar-slider.sidebar-collapsed {
+    width: 60px;
+  }
+  
+  .sidebar-content {
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    align-items: flex-start;
+    color: white;
+    font-size: 16px;
+    padding: 13px;
+    height: 100%;
+    cursor: pointer;
+  }
+  
+  .sidebar-content div {
+    display: flex;
+    gap: 10px;
+    padding: 6px 3px;
+    width: 100%;
+    text-align: left;
+    transition: 0.6s;
+    overflow: hidden;
+  }
+  
+  .sidebar-slider.sidebar-collapsed .sidebar-content div {
+    justify-content: center;
+  }
+  
+  .sidebar-slider.sidebar-collapsed .sidebar-content div span {
+    display: none;
+  }
+  
+  .sidebar-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: white;
+  }
+  
+  .toggle-icon {
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .role-subitems {
+    margin-left: -180px;
+    display: flex;
+    flex-wrap: wrap;
+    white-space: nowrap;
+    margin-top: 30px;
+  }
+  
+  .sidebar-content{
+    margin-top: 20px;
+  }
+  
+  .role-management {
+    margin-left: -8px; 
+    margin-top: -10px;
+  }
+  
+  .sidebar-close i {
+    font-size: 20px; 
+  }
+
+  .sidebar-item{
+    position:sticky;
+  }
+
+  .role-management .toggle-icon{
+    height: 20px;
+    margin-top: 10px;
+  }
+
+  .role-main{
+    justify-content: space-evenly;
+  }
+
+  
+  
+  

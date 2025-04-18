@@ -1,0 +1,136 @@
+h1{
+    overflow-x: auto;
+    margin-left: 200px;
+    font-weight: bold;
+}
+
+.position{
+    position:fixed;
+}
+
+.dashboard{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-left: 160px;
+    flex-wrap: wrap;
+}
+
+.card {
+    height: 140px;
+    width: 250px;
+}
+
+.card-content{
+    display: flex;
+    border-radius: 3px 3px 0px 0px;
+    height: 120px;
+    align-items: center;
+    padding: 10px;
+}
+
+.card:nth-child(1) .card-content{
+    background-color: rgb(103, 209, 241);;
+}
+
+.card:nth-child(1) .fa-user{
+    color: rgb(60, 169, 241)  
+}
+
+.card:nth-child(1) .card-bottom{
+    background-color: rgb(60, 169, 241)   
+}
+
+.card:nth-child(2) .card-content{
+    background-color: green;
+}
+
+.card:nth-child(2) .card-bottom{
+    background-color: rgb(2, 90, 2);
+}
+
+.card:nth-child(2) .fa-user{
+    color: rgb(2, 90, 2);
+}
+
+.card:nth-child(3) .card-content{
+    background-color: rgb(233, 204, 39);
+}
+
+.card:nth-child(3) .card-bottom{
+    background-color: rgb(219, 182, 17)   
+}
+
+.card:nth-child(3) .fa-user{
+    color: rgb(219, 182, 17);
+}
+
+.card:nth-child(4) .card-content{
+    background-color: rgb(216, 3, 3);
+}
+
+.card:nth-child(4) .card-bottom{
+    background-color: rgb(204, 3, 3);
+}
+
+.card:nth-child(4) .fa-user{
+    color: rgb(204, 3, 3);
+}
+
+
+.card-content-left p{
+    margin-left: 5px;
+    margin-top: 20px;
+    color: white;
+    flex-wrap: nowrap;
+}
+
+.card-content-left .count{
+    font-size: x-large;
+}
+
+.card-content .card-content-right{
+    padding-left: 50px;
+    height: 50%;
+    width: 50%;
+}
+
+.card-bottom{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 0px 0px 3px 3px;
+    height: 20px;
+}
+
+.bottom-content {
+    margin-top: 14px;
+    display: -webkit-box;
+    gap: 10px;
+}
+
+.bottom-content i{
+    height: 50%;
+    width: 50%;
+    color: white;
+}
+
+.fa-user {
+    font-size: 5rem;
+    margin-top: -10px; 
+}
+
+.bottom-content button{
+    border: none;
+    background: none;
+}
+
+@media(width:600px){
+    .dashboard{
+        display: block;
+    }
+    .position{
+        position:absolute;
+    }
+}

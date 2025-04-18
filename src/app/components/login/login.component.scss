@@ -1,0 +1,80 @@
+#app {
+    width: 80vh;
+    height: auto;
+    padding: 6vh;
+    background: white;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    place-items: flex-start;
+    margin-top: 100px;
+  }
+
+  .app-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+  }
+  
+  input {
+    font-size: 2.5vh;
+    width: 25rem;
+    height: 7.5vh;
+    margin-bottom: 4vh;
+    border: 1px solid #E3E3E3;
+    padding: 1vh;
+    border-radius: 5px;
+  }
+  
+  button.app-button {
+    text-decoration: none;
+    background-color: #0F9EDE;
+    color: white;
+    font-size: 2.5vh;
+    padding: 1vh 2vh;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  button.app-button:disabled {
+    background-color: #D0DFF0;
+    cursor: not-allowed;
+  }
+
+  h1{
+    margin-top: auto;
+  }
+
+  .registration p button{
+    border: none;
+    background:none;
+    color: rgba(53, 53, 250, 0.945)
+  }
+
+  small {
+    color: red;
+    font-size: 12px;
+  }
+  
+  input.ng-invalid.ng-touched {
+    border: 1px solid red; 
+  }
+
+  .ErrorMessage{
+    background-color: rgb(243, 139, 139);
+    color: white;
+    width: 98%;
+    height: 25px;
+    margin-bottom: 10px;
+  }
+
+  .ErrorMessage p{
+    margin-left: 10px;
+    padding-top: 4px;
+
+  }

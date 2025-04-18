@@ -1,0 +1,15 @@
+<!-- <app-navbar></app-navbar> -->
+<div  class="col-md-8">
+    <h1>Manage Visitors</h1>
+    <ng-container *ngIf="visitorsList.length; else NoData">
+        <app-shared-table [tableData]="visitorsList" [columns]="columns" [pageSize]="5"></app-shared-table>
+    </ng-container>
+    <ng-template #NoData>
+        <p>No Data Found</p>
+    </ng-template>
+</div>
+
+<!-- <app-sidebar></app-sidebar> -->
+<!-- <div class="col-md-8">
+</div> -->
+

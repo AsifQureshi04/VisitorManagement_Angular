@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.toast-bottom-custom {
+    position: fixed !important;   
+    bottom: 20px !important;      
+    left: 87% !important;
+    transform: translateX(-50%);
+    z-index: 1050 !important;
+    width: auto;
+    max-width: 90vw;
+  }
+  
+  .toast {
+    min-width: 300px;
+    max-width: 400px;
+    word-wrap: break-word;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  

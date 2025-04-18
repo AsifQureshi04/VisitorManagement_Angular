@@ -1,0 +1,44 @@
+.menu-icon {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.menu-icon.arrow {
+  transform: rotate(180deg);
+}
+
+.reduced-image {
+  width: 15%;
+  height: auto;
+  border-radius: 150% 150%;
+}
+
+.navbar-brand{
+  margin-left: -60px;
+}
+
+.dropdown{
+  margin-right: -150px;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  z-index: 1000;
+  margin-left: 50px;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+a.dropdown-toggle.text-light{
+  cursor: pointer;
+}
+
+.dropdown-item{
+  cursor: pointer;
+}
+

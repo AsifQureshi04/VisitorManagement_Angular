@@ -1,0 +1,32 @@
+<div class="col-md-8">
+    <div class="container mt-4 search-visitor">
+        <div class="heading">
+            <h1>Search by visitor name & mobile number.</h1>
+        </div>
+        <div class="form">
+            <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col-md-10 mb-4">
+                        <label>Search by visitor name & mobile number.</label>
+                        <input type="text" class="form-control" formControlName="search">
+                        <small class="text-danger" *ngIf="isFormSubmitted && f['search'].invalid">
+                            Name/Phone number is required.
+                        </small>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <ng-container *ngIf="visitorsList.length">
+          <div class="table">
+            <app-shared-table [tableData]="visitorsList" [columns]="columns" [pageSize]="5"></app-shared-table>
+        </div>
+        </ng-container>
+      </div>
+</div>
+
+
+

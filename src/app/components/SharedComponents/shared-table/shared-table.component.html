@@ -1,0 +1,30 @@
+<div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th *ngFor="let column of columns">{{ column }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of paginatedData">
+          <td *ngFor="let column of columns">
+            <ng-container *ngIf="column !== 'Action'; else actionIcons">
+              {{ column === 'In Time' ? (row[column] | timeFormat) : row[column]  }}
+            </ng-container>
+            <ng-template #actionIcons>
+              <i class="fa fa-edit" (click)="updateVisitor(row['Visitor Id'])"></i>
+              <i class="fa fa-trash" (click)="deleteVisitor(row.VisitorId)"></i>
+            </ng-template>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pagination">
+      <button (click)="firstPage()" [disabled]="currentPage === 1">First</button>
+      <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+      <span>Page {{ currentPage }} of {{ totalPages }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+      <button (click)="lastPage()" [disabled]="currentPage === totalPages">Last</button>
+    </div>
+  </div>
+  
