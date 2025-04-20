@@ -25,40 +25,40 @@ export class UpdateVisitorComponent implements OnInit {
               
   ) {
     this.visitForm = this.fb.group({
-      firstName:['',[Validators.required,Validators.minLength(2)]],
-      lastName:['',[Validators.required,Validators.minLength(2)]],
-      emailId:['',[Validators.required,Validators.email]],
-      contactNumber:['',[Validators.required,Validators.pattern(/^[0-9]{10}$/)]],
-      address:['',Validators.required],
-      whomToMeet:['',Validators.required],
-      department:['',Validators.required],
-      reasonToMeet:['',Validators.required],
-      visitDate:['',Validators.required],
-      inTime:['',Validators.required],
-      exitTime:['',Validators.required]
+      firstName:[{ value: '', disabled: true },[Validators.required,Validators.minLength(2)]],
+      lastName:[{ value: '', disabled: true },[Validators.required,Validators.minLength(2)]],
+      emailId:[{ value: '', disabled: true },[Validators.required,Validators.email]],
+      contactNumber:[{ value: '', disabled: true },[Validators.required,Validators.pattern(/^[0-9]{10}$/)]],
+      address:[{ value: '', disabled: true },Validators.required],
+      whomToMeet:[{ value: '', disabled: true },Validators.required],
+      department:[{ value: '', disabled: true },Validators.required],
+      reasonToMeet:[{ value: '', disabled: true },Validators.required],
+      visitDate:[{ value: '', disabled: true },Validators.required],
+      inTime:[{ value: '', disabled: true },Validators.required],
+      exitTime:[{ value: '', disabled: true },Validators.required]
     });
   }
 
   ngOnInit(): void {
     this.visitorId = this.route.snapshot.paramMap.get('id');
     console.log('visitorId',this.visitorId)
-    Object.keys(this.visitForm.controls).forEach(controlName =>{
-      if(controlName === 'exitTime'){
-        const exitTimeValue = this.visitForm.get('exitTime')?.value;
-        if(!exitTimeValue) this.visitForm.get('exitTime')?.enable();
-        else this.visitForm.get('exitTime')?.disable();
-      }else{
-        this.visitForm.get(controlName)?.disable();
-      }
-    })
-    this.getAllVisitors();
+    // Object.keys(this.visitForm.controls).forEach(controlName =>{
+    //   if(controlName === 'exitTime'){
+    //     const exitTimeValue = this.visitForm.get('exitTime')?.value;
+    //     if(!exitTimeValue) this.visitForm.get('exitTime')?.enable();
+    //     else this.visitForm.get('exitTime')?.disable();
+    //   }else{
+    //     this.visitForm.get(controlName)?.disable();
+    //   }
+    // })
+    this.getAllVisitorBy();
   }
 
   get f() {
     return this.visitForm.controls;
   }
 
-  getAllVisitors(){
+  getAllVisitorBy(){
     const payload = {
       "visitorId": this.visitorId
     }
@@ -66,8 +66,9 @@ export class UpdateVisitorComponent implements OnInit {
       next:(response:any)=>{
         if(response.token === 1 && response.statusCode === '200'){
             this.visitorsList = response.data;
-            
             this.visitForm.patchValue(this.visitorsList);
+            if(this.visitForm.get('exitTime')?.value.length === 0)
+                this.visitForm.get('exitTime')?.enable()
             console.log(this.visitorsList)
         }
       },

@@ -9,11 +9,11 @@
         <tr *ngFor="let row of paginatedData">
           <td *ngFor="let column of columns">
             <ng-container *ngIf="column !== 'Action'; else actionIcons">
-              {{ column === 'In Time' ? (row[column] | timeFormat) : row[column]  }}
+              {{ column === 'In Time' || 'Exit Time' ? (row[column] | timeFormat) : row[column]  }}
             </ng-container>
             <ng-template #actionIcons>
-              <i class="fa fa-edit" (click)="updateVisitor(row['Visitor Id'])"></i>
-              <i class="fa fa-trash" (click)="deleteVisitor(row.VisitorId)"></i>
+              <i class="fa fa-edit" (click)="updateVisitor(row)"></i>
+              <i class="fa fa-trash" (click)="deleteVisitor(row)"></i>
             </ng-template>
           </td>
         </tr>

@@ -31,9 +31,11 @@ export class LoginComponent {
         next:(response:any)=>{
           if(response.token === 1 && response.statusCode === '200'){
             this.route.navigate(['Home']);
-          }else if(response.token === 0){
+          }else if(response.token === 0 && response.statusCode === '200'){
             this.errorMessage = 'Invalid Username or password'
             console.log(this.errorMessage);
+          }else{
+            this.errorMessage = 'Some technical error has occurred'
           }
         },
         error:(error)=>{

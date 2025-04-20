@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AddVisitorPayload } from 'src/app/Models/AddVisitorPayload';
 import { VisitorManagementService } from 'src/app/services/visitor-management.service';
@@ -12,12 +13,13 @@ import { VisitorManagementService } from 'src/app/services/visitor-management.se
 export class AddVisitorComponent {
   visitorForm! : FormGroup
   isFormSubmitted: boolean = false;
-  departments = ['Human Resources','Finance','IT Department','Marketing','Operations']
-  Ids = ['Aadhaar Card','Passport','Driving License']
+  departments = ['Human Resources','Finance','IT','Admin Department']
+  Ids = ['Aadhar Card','PAN Card','Driving License','Passport']
 
   constructor(private fb : FormBuilder,
               private visitor : VisitorManagementService,
-              private toastr: ToastrService
+              private toastr: ToastrService,
+              private router : Router
   ) {
     this.visitorForm = this.fb.group({
       firstName:['',[Validators.required,Validators.minLength(2)]],
@@ -63,6 +65,7 @@ export class AddVisitorComponent {
               console.log('Visitor Added');
               this.visitorForm.reset();
               this.isFormSubmitted = false;
+              this.router.navigate(['ManageVisitor']);
               this.toastr.success('Visitor added successfully!');
           }
         },
