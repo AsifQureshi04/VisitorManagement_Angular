@@ -57,10 +57,10 @@ export class SharedTableComponent implements OnInit, OnChanges {
     }
   }
 
-  updateVisitor(visitorId : number){
+  updateVisitor(visitor: any){
     console.log('paginated data',this.paginatedData)
-    console.log('update visitor',visitorId)
-    this.router.navigate(['UpdateVisitor',visitorId]);
+    console.log('update visitor',visitor)
+    this.router.navigate(['UpdateVisitor',visitor]);
   }
 
   deleteVisitor(visitorId : number){

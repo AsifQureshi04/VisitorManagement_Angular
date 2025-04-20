@@ -3,7 +3,7 @@
     height: auto;
     padding: 6vh;
     background: white;
-    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.3);
     justify-self: center;
     display: flex;
     flex-direction: column;
@@ -50,10 +50,10 @@
     margin-top: auto;
   }
 
-  .registration p button{
+  .login p button{
     border: none;
     background:none;
-    color: rgba(53, 53, 250, 0.945)
+    color: rgba(53, 53, 250, 0.945);
   }
 
   small {
@@ -68,7 +68,7 @@
   .ErrorMessage{
     background-color: rgb(243, 139, 139);
     color: white;
-    width: 98%;
+    width: 91%;
     height: 25px;
     margin-bottom: 10px;
   }

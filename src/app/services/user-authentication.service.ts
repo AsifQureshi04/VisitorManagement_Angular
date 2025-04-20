@@ -4,6 +4,7 @@ import { UserRegistration } from '../interfaces/UserRegistraton';
 import { environment } from 'src/environments/environment.development';
 import { catchError, map, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { ChangePasswordPayload } from '../Models/changePasswordPayload';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,17 @@ export class UserAuthenticationService {
         return throwError(()=>error);
       })
     );
+  }
+
+  changePassword(payload : ChangePasswordPayload){
+    return this.http.post<any>(`${this.baseUrl}Authentication/UpdatePassword`,payload).pipe(
+      map(response =>{
+        return response
+      }),
+      catchError(error=>{
+        return throwError(()=>error);
+      })
+    )
   }
 
   setCurrentUser(user: any){

@@ -3,7 +3,7 @@
   <div class="app-view">  
     <header class="app-header">
       <h1>Visitor Management System</h1>
-      <h3>Welcome back,<br/>
+      <h3>Welcome back
         <span class="app-subheading">Sign in to continue</span></h3>
         <div *ngIf="errorMessage" class="ErrorMessage"><p>{{errorMessage}}</p></div>
     </header>
@@ -20,7 +20,7 @@
       
       <button type="submit" class="app-button" [disabled]="loginForm.invalid">Login</button>
     </form>
-    <div class="registration">
+    <div class="login">
       <p>New User? <button (click)="userRegistration()">Signup</button></p>
     </div>
   </div>

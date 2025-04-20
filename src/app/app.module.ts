@@ -6,12 +6,12 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { SidebarModule } from './components/SharedComponents/sidebar/sidebar.module';
 import { NavbarModule } from './components/SharedComponents/navbar/navbar.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { TimeFormatPipe } from './CustomPipes/time-format.pipe';
+import { JwtInterceptor } from './Interceptor/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,13 @@ import { TimeFormatPipe } from './CustomPipes/time-format.pipe';
     }),
 
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:JwtInterceptor,
+      multi:true  
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
