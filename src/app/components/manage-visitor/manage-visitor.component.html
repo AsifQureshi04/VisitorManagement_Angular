@@ -1,15 +1,31 @@
-<!-- <app-navbar></app-navbar> -->
-<div  class="col-md-8">
-    <h1>Manage Visitors</h1>
+<div  class="col-md-8 content">
+    <div class="visitors">
+        <h1>Manage Visitors</h1>
+        <select #visitorSelect class="visitorFilter">
+            <option *ngFor="let option of visitorOptions" [value]="option.value">
+                {{option.label}}
+            </option>
+        </select>
+    </div>
     <ng-container *ngIf="visitorsList.length; else NoData">
-        <app-shared-table [tableData]="visitorsList" [columns]="columns" [pageSize]="5"></app-shared-table>
+        <app-shared-table (updateExitVisitorTime)="exitVisitor($event)" (updateVisitorRequest)="updateVisitorRequest($event)" (onDeleteVisitor)="deleteVisitor($event)"[tableData]="visitorsList" [columns]="columns" [pageSize]="5"></app-shared-table>
     </ng-container>
     <ng-template #NoData>
         <p>No Data Found</p>
     </ng-template>
 </div>
 
-<!-- <app-sidebar></app-sidebar> -->
-<!-- <div class="col-md-8">
-</div> -->
+
+	<!-- Modal -->
+    <app-confirmation-dialog-box
+    #confirmationDialogBox
+    [title]="'Delete Visitor'"
+    [modalId]="'exampleModalLive1'"
+    [text]="text"
+    [closeLabel]="'Close'"
+    [saveLabel]="'Delete'"
+    (operation)="performOperation($event)"
+  ></app-confirmation-dialog-box>
+  
+
 

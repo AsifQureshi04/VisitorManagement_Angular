@@ -1,0 +1,21 @@
+<!-- Modal -->
+<div #modalElement id="{{modalId}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLiveLabel"><h1><b>{{ title }}</b></h1></h5>
+          <button type="button" class="close" aria-label="Close" (click)="closeModal('cancel')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>{{ text }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal('cancel')">{{ closeLabel }}</button>
+          <button type="button" class="btn btn-primary" (click)="saveChangeModal('delete')">{{ saveLabel }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

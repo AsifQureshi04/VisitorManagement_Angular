@@ -1,48 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { VisitorManagementService } from 'src/app/services/visitor-management.service';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
   selectedItem: string = '';
   roleDropdownOpen: boolean = false;
   sidebarShow: boolean = true;
   roleDropdown: boolean = false;
-
-  menu = [
-    { name: 'Dashboard', icon: 'bi-house-door', route: '/Dashboard' },
-    { name: 'Add Visitor', icon: 'bi-person-plus', route: '/AddVisitor' },
-    { name: 'Manage Visitors', icon: 'bi-people', route: '/ManageVisitor' },
-    { name: 'Visitor Search', icon: 'bi-search', route: '/SearchVisitor' },
-    { name: 'Visitor B/W Dates', icon: 'bi-calendar-check', route: '/SearchVisitorBeetwenDates' },
-    {
-      name: 'Manage Roles',
-      icon: 'bi-person-badge',
-      route: '/RoleManagement',
-      hasDropdown: true,
-      children: [
-        { name: 'Add Role', icon: 'bi-plus-square', route: '/RoleManagement/AddRole' },
-        { name: 'Update Role', icon: 'bi-pencil-square', route: '/RoleManagement/UpdateRole' }
-      ]
-    },
-    { name: 'Change Password', icon: 'bi-key', route: '/ChangePassword' }
-  ];
+  menuItem: any;
   
 
+  constructor(private router : Router,
+              private visitorService : VisitorManagementService
+  ) {}
 
-  constructor(private router : Router) {
-    
+
+  ngOnInit(): void {
+    this.getSideBarMenuItems();
   }
-
 
   redirectTo(route: string) {
     console.log(route);
     this.router.navigate([route]);
   }
-
 
   toggleRoleDropdown(){
     this.roleDropdown = !this.roleDropdown;
@@ -53,8 +38,28 @@ export class SidebarComponent {
     if(this.roleDropdown)
       this.roleDropdown = !this.roleDropdown;
     this.sidebarShow = !this.sidebarShow;
-   
+  }
 
+  getSideBarMenuItems(){
+    var userString = localStorage.getItem('user');
+    var user = JSON.parse(userString!)
+    const RoleName = user.data.userRole
+    console.log('role id ',RoleName)
+    const payload = {
+      "roleName": RoleName
+    }
+
+    this.visitorService.getSidebarMenu(payload).subscribe({
+      next:(response) =>{
+        if(response.token === 1 && response.statusCode === '200'){
+          this.menuItem = response.data;
+          console.log(this.menuItem)
+        }
+      },
+      error:(error)=>{
+        console.log(error);
+      }
+    })
   }
   
 

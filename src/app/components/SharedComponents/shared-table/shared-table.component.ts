@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,6 +10,9 @@ export class SharedTableComponent implements OnInit, OnChanges {
   @Input() tableData: any[] = [];
   @Input() columns: string[] = [];
   @Input() pageSize: number = 5;
+  @Output() onDeleteVisitor = new EventEmitter<any>();
+  @Output() updateVisitorRequest = new EventEmitter<any>();
+  @Output() updateExitVisitorTime = new EventEmitter<any>();
 
   currentPage: number = 1;
   totalPages: number = 1;
@@ -17,11 +20,13 @@ export class SharedTableComponent implements OnInit, OnChanges {
   constructor(private router : Router) {
     
   }
+
   ngOnInit(): void {
   }
 
   ngOnChanges(){
     this.calculateTotalPages();
+    console.log(this.columns)
   }
 
   calculateTotalPages(): void {
@@ -60,10 +65,26 @@ export class SharedTableComponent implements OnInit, OnChanges {
   updateVisitor(visitor: any){
     console.log('paginated data',this.paginatedData)
     console.log('update visitor',visitor)
-    this.router.navigate(['UpdateVisitor',visitor]);
+    this.router.navigate(['UpdateVisitor',visitor['Visitor Id']]);
+    visitor.showMenu = !visitor.showMenu    
   }
 
-  deleteVisitor(visitorId : number){
+  deleteVisitor(visitor : any){
+    this.onDeleteVisitor.emit(visitor);
+    console.log(visitor)
+    visitor.showMenu = !visitor.showMenu
 
   }
+
+  updateRequest(visitor : any, status : string){
+    visitor.updatedTo = status;
+    this.updateVisitorRequest.emit(visitor);
+    visitor.showMenu = !visitor.showMenu
+  }
+
+  exitVisitor(row:any){
+    console.log(row)
+    this.updateExitVisitorTime.emit(row)
+  }
+
 }

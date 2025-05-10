@@ -20,7 +20,7 @@ export class SearchVisitorComponent {
               private utilities : UtilityService
   ) {
     this.searchForm = this.fb.group({
-      search:['',[Validators.required,Validators.minLength(2)]]
+      search:['',[Validators.required,Validators.minLength(1)]]
     })
   }
 
@@ -47,8 +47,8 @@ export class SearchVisitorComponent {
     }
     this.visitor.getAllVisitors(payload).subscribe({
       next:(response:any)=>{
+        this.visitorsList = response.data;
         if(response.token === 1 && response.statusCode === '200'){
-            this.visitorsList = response.data;
             this.columns = Object.keys(response.data[0]);
             const excludeColumns = ['address', 'whomToMeet', 'reasonToMeet', 'department'];
             this.columns = this.columns.filter(col => !excludeColumns.includes(col));
@@ -62,6 +62,8 @@ export class SearchVisitorComponent {
               });
               return updatedVisitor;
             })
+        }else{
+          // this.visitorsList = response.data;
         }
       },
       error:(error:any)=>{

@@ -1,21 +1,21 @@
-<div class="sidebar-slider" [class.sidebar-collapsed]="!sidebarShow">
+<div *ngIf="menuItem" class="sidebar-slider" [class.sidebar-collapsed]="!sidebarShow">
     <div class="sidebar-close" (click)="toggleSidebar()">
       <i class="bi toggle-icon" [ngClass]="sidebarShow ? 'bi-x' : 'bi-list'"></i>
     </div>
   
     <div class="sidebar-content">
-      <div *ngFor="let item of menu" class="sidebar-item">
+      <div *ngFor="let item of menuItem" class="sidebar-item">
         
-        <div *ngIf="!item.hasDropdown" (click)="redirectTo(item.route)">
-          <i class="bi" [ngClass]="item.icon"></i>
-          <span *ngIf="sidebarShow">{{ item.name }}</span>
+        <div *ngIf="item.subMenuItem.length === 0" (click)="redirectTo(item.menuRoute)">
+          <i class="bi" [ngClass]="item.menuIcon"></i>
+          <span *ngIf="sidebarShow">{{ item.menuName }}</span>
         </div>
   
-        <div *ngIf="item.hasDropdown" class="role-management">
+        <div *ngIf="item.subMenuItem.length > 0" class="role-management">
           <div class="role-main">
-            <div class="role-label" (click)="redirectTo(item.route)">
-              <i class="bi" [ngClass]="item.icon"></i>
-              <span *ngIf="sidebarShow">{{ item.name }}</span>
+            <div class="role-label" (click)="redirectTo(item.menuRoute)">
+              <i class="bi" [ngClass]="item.menuIcon"></i>
+              <span *ngIf="sidebarShow">{{ item.menuName }}</span>
             </div>
             <i *ngIf="sidebarShow"
                class="bi toggle-icon"
@@ -28,9 +28,9 @@
           </div>
   
           <div class="role-subitems" *ngIf="roleDropdown && sidebarShow">
-            <div *ngFor="let sub of item.children" class="role-subitem" (click)="redirectTo(sub.route)">
-              <i class="bi" [ngClass]="sub.icon"></i>
-              <span>{{ sub.name }}</span>
+            <div *ngFor="let sub of item.subMenuItem" class="role-subitem" (click)="redirectTo(sub.subMenuRoute)">
+              <i class="bi" [ngClass]="sub.subMenuIcon"></i>
+              <span>{{ sub.subMenuName }}</span>
             </div>
           </div>
         </div>  

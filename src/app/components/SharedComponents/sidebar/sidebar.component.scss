@@ -8,6 +8,7 @@
     transition: all 0.4s ease-in-out !important;
     overflow: hidden;
     white-space: nowrap;
+    z-index: 1000;
   }
   
   .sidebar-slider.sidebar-collapsed {
@@ -16,7 +17,6 @@
   
   .sidebar-content {
     display: flex;
-    position: fixed;
     flex-direction: column;
     align-items: flex-start;
     color: white;
@@ -89,7 +89,10 @@
   .role-main{
     justify-content: space-evenly;
   }
-
+  
+  .bi-caret-up-fill{
+    // margin-left: 30px;
+  }
   
   
   

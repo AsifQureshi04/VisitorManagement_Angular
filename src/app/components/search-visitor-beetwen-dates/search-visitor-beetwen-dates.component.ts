@@ -51,6 +51,7 @@ export class SearchVisitorBeetwenDatesComponent {
       }
       this.visitor.getAllVisitors(payload).subscribe({
         next:(response:any)=>{
+          this.visitorsList = response.data;
           if(response.token === 1 && response.statusCode === '200'){
               this.visitorsList = response.data;
               this.columns = Object.keys(response.data[0]);

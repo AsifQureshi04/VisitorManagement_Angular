@@ -7,11 +7,14 @@ import { NavbarModule } from "../SharedComponents/navbar/navbar.module";
 import { SidebarModule } from "../SharedComponents/sidebar/sidebar.module";
 import { SharedTableComponent } from '../SharedComponents/shared-table/shared-table.component';
 import { SharedModuleModule } from 'src/app/shared-module/shared-module.module';
+import { ConfirmationDialogBoxComponent } from './confirmation-dialog-box/confirmation-dialog-box.component';
 
 
 @NgModule({
   declarations: [
     ManageVisitorComponent,
+    ConfirmationDialogBoxComponent,
+
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,5 @@
-<div class="table-container">
+<div class="container">
+  <div class="table-container">
     <table>
       <thead>
         <tr>
@@ -7,14 +8,43 @@
       </thead>
       <tbody>
         <tr *ngFor="let row of paginatedData">
-          <td *ngFor="let column of columns">
+          <td *ngFor="let column of columns" [title]="column">
             <ng-container *ngIf="column !== 'Action'; else actionIcons">
-              {{ column === 'In Time' || 'Exit Time' ? (row[column] | timeFormat) : row[column]  }}
+                <span *ngIf="column === 'Status'; else defaultCell"
+                    [ngClass]="{
+                      'approved' : row[column] === 'Approved',
+                      'rejected' : row[column] === 'Rejected',
+                      'pending' : row[column] === 'Pending'
+                    }">
+                    {{ row[column] }}
+              </span>
+              <ng-template #defaultCell>
+                {{ column === 'In Time' || column === 'Exit Time' ? (row[column] | timeFormat) : row[column] }}
+              </ng-template>
             </ng-container>
             <ng-template #actionIcons>
-              <i class="fa fa-edit" (click)="updateVisitor(row)"></i>
-              <i class="fa fa-trash" (click)="deleteVisitor(row)"></i>
+              <div class="action-menu-container">
+                <i class="fa fa-bars menu-icon" (click)="row.showMenu = !row.showMenu"></i>
+                <div class="dropdown-menu" *ngIf="row.showMenu">
+                  <div class="dropdown-item" (click)="updateVisitor(row)">
+                    <i class="fa fa-edit"></i> Edit
+                  </div>
+                  <div class="dropdown-item" (click)="deleteVisitor(row)">
+                    <i class="fa fa-trash"></i> Delete
+                  </div>
+                  <div class="dropdown-item" (click)="updateRequest(row,'Approved')">
+                    <i class="fa fa-check"></i> Approve
+                  </div>
+                  <div class="dropdown-item" (click)="updateRequest(row,'Rejected')">
+                    <i class="fa fa-times"></i> Reject
+                  </div>
+                  <div class="dropdown-item" (click)="exitVisitor(row)">
+                    <i class="fa fa-times"></i> Exit
+                  </div>
+                </div>
+              </div>
             </ng-template>
+                       
           </td>
         </tr>
       </tbody>
@@ -22,9 +52,10 @@
     <div class="pagination">
       <button (click)="firstPage()" [disabled]="currentPage === 1">First</button>
       <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
-      <span>Page {{ currentPage }} of {{ totalPages }}</span>
+      <span><div class="page">Page {{ currentPage }} of {{ totalPages }}</div></span>
       <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
       <button (click)="lastPage()" [disabled]="currentPage === totalPages">Last</button>
     </div>
   </div>
   
+</div>

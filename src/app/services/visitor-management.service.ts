@@ -32,8 +32,8 @@ export class VisitorManagementService {
   getAllVisitors(payload:any){
     return this.http.post<any>(`${this.baseUrl}ManageVisitors/GetAllVisitors`,payload).pipe(
       map(response=>{
-        if(response.token === 1 && response.statusCode === '2000'){
-          
+        if(response.token === 1 && response.statusCode === '200'){
+           
         }
         return response;
       }),
@@ -69,5 +69,86 @@ export class VisitorManagementService {
         return throwError(()=>error)
       })
     ) 
+  }
+
+  getDepartmentList(){
+    return this.http.post<any>(`${this.baseUrl}ManageVisitors/GetDepartmentList`,{}).pipe(
+      map(response =>{
+        if(response.token === 1 && response.statusCode === '200'){
+
+        }
+        return response
+      }),
+      catchError(error=>{
+        return throwError(()=>error)
+      })
+    ) 
+  }
+
+  getIdProodfList(){
+    return this.http.post<any>(`${this.baseUrl}ManageVisitors/idproof-types`,{}).pipe(
+      map(response =>{
+        if(response.token === 1 && response.statusCode === '200'){
+
+        }
+        return response
+      }),
+      catchError(error=>{
+        return throwError(()=>error)
+      })
+    ) 
+  }
+
+  deleteVisitor(payload:any){
+    return this.http.post<any>(`${this.baseUrl}ManageVisitors/DeleteVisitorById`,payload).pipe(
+      map(response =>{
+        if(response.token === 1 && response.statusCode === '200'){
+
+        }
+        return response
+      }),
+      catchError(error=>{
+        return throwError(()=>error)
+      })
+    ) 
+  }
+
+  getVisitorCount(){
+    return this.http.post<any>(`${this.baseUrl}ManageVisitors/VisitorCount`,{}).pipe(
+      map(response =>{
+        if(response.token === 1 && response.statusCode === '200'){
+            return response;
+        }
+      }),
+      catchError(error=>{
+        return throwError(()=>error)
+      })
+    )
+  }
+
+  getSidebarMenu(payload : any){
+    return this.http.post<any>(`${this.baseUrl}ManageVisitors/GetSidebarMenuItems`,payload).pipe(
+      map(response =>{
+        if(response.token === 1 && response.statusCode === '200'){
+            return response;
+        }
+      }),
+      catchError(error=>{
+        return throwError(()=>error)
+      })
+    )
+  }
+
+  generateAddVisitorFormQRCode(){
+    return this.http.post<any>(`${this.baseUrl}ManageVisitors/addVisitorFormQrCode`,{}).pipe(
+      map(response =>{
+        if(response.token === 1 && response.statusCode === '200'){
+            return response;
+        }
+      }),
+      catchError(error=>{
+        return throwError(()=>error)
+      })
+    )
   }
 }

@@ -12,7 +12,7 @@ import { UserAuthenticationService } from 'src/app/services/user-authentication.
 })
 export class RegistrationComponent {
   signupForm: FormGroup;
-  userRoles: string[] = ['Admin','Personnel'];
+  userRoles: string[] = ['Admin','Receptionist'];
   registrationPayload : UserRegistration[] = [];
 
   constructor(private fb: FormBuilder,

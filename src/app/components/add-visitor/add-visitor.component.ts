@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -10,16 +10,16 @@ import { VisitorManagementService } from 'src/app/services/visitor-management.se
   templateUrl: './add-visitor.component.html',
   styleUrls: ['./add-visitor.component.scss']
 })
-export class AddVisitorComponent {
+export class AddVisitorComponent implements OnInit{
   visitorForm! : FormGroup
   isFormSubmitted: boolean = false;
-  departments = ['Human Resources','Finance','IT','Admin Department']
-  Ids = ['Aadhar Card','PAN Card','Driving License','Passport']
+  departments :any[] = []
+  Ids :any[] = []
 
   constructor(private fb : FormBuilder,
               private visitor : VisitorManagementService,
               private toastr: ToastrService,
-              private router : Router
+              private router : Router,
   ) {
     this.visitorForm = this.fb.group({
       firstName:['',[Validators.required,Validators.minLength(2)]],
@@ -37,6 +37,11 @@ export class AddVisitorComponent {
     });
   }
 
+  ngOnInit(){
+    this.getDepartments();
+    this.getIdProofs();
+  }
+
   get f() {
     return this.visitorForm.controls;
   }
@@ -44,6 +49,7 @@ export class AddVisitorComponent {
   async onSubmit(){
     this.isFormSubmitted = true;
     if(this.visitorForm.valid){
+      console.log(this.visitorForm.value)
       const payload : AddVisitorPayload = {
         firstName : this.visitorForm.get('firstName')?.value,
         lastName: this.visitorForm.get('lastName')?.value,
@@ -80,5 +86,33 @@ export class AddVisitorComponent {
       this.toastr.error('All required fields are not given');
 
     }
+  }
+
+  getDepartments(){
+    this.visitor.getDepartmentList().subscribe({
+      next:(response)=>{
+        if(response.token === 1 && response.statusCode === '200'){
+            this.departments = response.data;
+            console.log(this.departments)
+        }
+      },
+      error:(error)=>{
+        console.log(error);
+      }
+    })
+  }
+
+  getIdProofs(){
+    this.visitor.getIdProodfList().subscribe({
+      next:(response)=>{
+        if(response.token === 1 && response.statusCode === '200'){
+            this.Ids = response.data;
+            console.log(this.Ids)
+        }
+      },
+      error:(error)=>{
+        console.log(error);
+      }
+    })
   }
 }

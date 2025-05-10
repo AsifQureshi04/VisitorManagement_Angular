@@ -14,7 +14,7 @@ export class UpdateVisitorComponent implements OnInit {
   visitorId:string | null = null;
   visitForm! : FormGroup
   isFormSubmitted: boolean = false;
-  visitorsList: any[] = []
+  visitorsList = []
   columns: any[] = []
 
   constructor(private route: ActivatedRoute,
@@ -65,6 +65,9 @@ export class UpdateVisitorComponent implements OnInit {
     this.visitor.getVisitorById(payload).subscribe({
       next:(response:any)=>{
         if(response.token === 1 && response.statusCode === '200'){
+            const [dd, mm, yy] = response.data.visitDate.split('-');
+            const formattedDate = `20${yy}-${mm}-${dd}`;
+            response.data.visitDate = formattedDate;
             this.visitorsList = response.data;
             this.visitForm.patchValue(this.visitorsList);
             if(this.visitForm.get('exitTime')?.value.length === 0)
@@ -104,7 +107,12 @@ export class UpdateVisitorComponent implements OnInit {
   }
 
   printPage() {
-    const printContent = document.getElementById('print-section');
+    Object.keys(this.visitForm.controls).forEach(control =>{
+      this.visitForm.get(control)?.enable();
+    })
+
+    setTimeout(()=>{
+      const printContent = document.getElementById('print-section');
     console.log(printContent)
     const originalContent  = document.body.innerHTML;
     // const form = document.getElementById("visitForm");
@@ -114,6 +122,7 @@ export class UpdateVisitorComponent implements OnInit {
 
     document.body.innerHTML = originalContent;
     window.location.reload();
+    },1000);
   }
 
 }

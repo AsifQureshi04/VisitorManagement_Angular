@@ -2,6 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { authGuard } from './Guards/auth.guard';
+import { VisitorRequestComponent } from './components/visitor-request/visitor-request.component';
 
 const routes: Routes = [
   { path: '', component:LoginComponent},
@@ -60,6 +61,7 @@ const routes: Routes = [
 
   { path: 'Registration', loadChildren: () => 
                 import('./components/registration/registration.module').then(m => m.RegistrationModule) },
+  { path: 'VisitorRequest', component:VisitorRequestComponent },
 
   { path:'Login',component:LoginComponent},
 
