@@ -1,152 +1,188 @@
+.main-content {
+  transition: margin-left 0.3s ease;
+  margin-left: 250px;
+  // padding: 20px;
+}
+
+.main-content.sidebar-collapsed {
+  margin-left: 60px; 
+}
+
+.table-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow-x: auto;
+  padding: 15px;
+  width: 1100px;
+  margin-left: -75px;
+}
+
 .table-container {
-    width: 100%;
-    margin-left: 200px;
-  }
+  width: 100%;
+  overflow-x: auto;
+}
 
-  .container{
-    // overflow-x: auto;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px; 
+}
 
-  }
   
-  th, td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f4f4f4;
-    white-space: nowrap;         
-    overflow: hidden;            
-    text-overflow: ellipsis;   
-  }
-  
-  .pagination {
-    display: flex;
-    gap: 2px;
-    margin-top:5px;
-    margin-left: 380px
-  }
-  
-  button {
-    padding: 5px 10px;
-    cursor: pointer;
-    border: none;
-    background-color: #eb5022;
-    color: white;
-  }
-  
-  button:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-  }
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
 
-  .fa-edit{
-    cursor: pointer; 
-    margin-right: 10px;
-    color: green;
-  }
+th {
+  background-color: #f4f4f4;
+  white-space: nowrap;         
+  overflow: hidden;            
+  text-overflow: ellipsis;   
+}
 
-  .fa-trash{
-    cursor: pointer;
-    color: red;
-  }
-
-  tr:hover{
-    background-color: #f4f4f4;
-  }
-
-  .action-icons {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .action-icons i,
-  .action-icons button {
-    cursor: pointer;
-  }
-
-  .close{
-    background: none;
-    color: black;
-    font-size: 25px;
-  }
-
-  .action-menu-container {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .menu-icon {
-    font-size: 20px;
-    cursor: pointer;
-  }
-  
-  .dropdown-menu {
-    position: absolute;
-    top: 25px;
-    left: 0;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
-    padding: 5px;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    border-radius: 4px;
-    cursor: pointer;
-
-  }
-  
-  .dropdown-menu i {
-    cursor: pointer;
-    padding: 5px;
-    font-size: 16px;
-  }
-  
-  .dropdown-menu i:hover {
-    background-color: #f0f0f0;
-  }
+.pagination {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  gap: 5px;
+}
 
 
-  @keyframes dropdownFadeIn {
-    0% {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  
-  .dropdown-menu {
-    animation: dropdownFadeIn 0.1s ease-out forwards;
-    transform-origin: top left;
+button {
+  padding: 5px 10px;
+  cursor: pointer;
+  border: none;
+  background-color: #eb5022;
+  color: white;
+}
+
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.fa-edit{
+  cursor: pointer; 
+  margin-right: 10px;
+  color: green;
+}
+
+.fa-trash{
+  cursor: pointer;
+  color: red;
+}
+
+tr:hover{
+  background-color: #f4f4f4;
+}
+
+.action-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.action-icons i,
+.action-icons button {
+  cursor: pointer;
+}
+
+.close{
+  background: none;
+  color: black;
+  font-size: 25px;
+}
+
+.action-menu-container {
+  position: relative;
+  display: inline-block;
+}
+
+.menu-icon {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 25px;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+  padding: 5px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+
+}
+
+.dropdown-menu i {
+  cursor: pointer;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.dropdown-menu i:hover {
+  background-color: #f0f0f0;
+}
+
+
+@keyframes dropdownFadeIn {
+  0% {
     opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.dropdown-menu {
+  animation: dropdownFadeIn 0.1s ease-out forwards;
+  transform-origin: top left;
+  opacity: 0;
+}
+
+.approved {
+  color: green;
+  // font-weight: bold;
+}
+
+.rejected {
+  color: red;
+  // font-weight: bold;
+}
+
+.pending {
+  color: black;
+  // font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+  .main-content {
+    margin-left: 60px !important;
+    padding: 10px;
   }
 
-  .approved {
-    color: green;
-    // font-weight: bold;
+  .table-card {
+    padding: 10px;
   }
-  
-  .rejected {
-    color: red;
-    // font-weight: bold;
+
+  th, td {
+    white-space: nowrap;
+    font-size: 14px;
   }
-  
-  .pending {
-    color: black;
-    // font-weight: bold;
-  }
+}
+
+
   
   
   

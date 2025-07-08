@@ -63,6 +63,7 @@ export class AddVisitorComponent implements OnInit{
         reasonToMeet:this.visitorForm.get('reasonToMeet')?.value,
         visitDate:this.visitorForm.get('date')?.value,
         inTime: this.visitorForm.get('inTime')?.value,
+        isInvited: true
       }
 
       await this.visitor.addVisitor(payload).subscribe({
@@ -84,7 +85,6 @@ export class AddVisitorComponent implements OnInit{
     }else{
       console.log('Form is invalid');
       this.toastr.error('All required fields are not given');
-
     }
   }
 

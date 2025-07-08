@@ -1,23 +1,38 @@
-<div  class="col-md-8 content">
-    <div class="visitors">
-        <h1>Manage Visitors</h1>
-        <select #visitorSelect class="visitorFilter">
-            <option *ngFor="let option of visitorOptions" [value]="option.value">
-                {{option.label}}
-            </option>
+<div class="container content shadow rounded bg-white p-4">
+    <div class="row align-items-center visitors mb-4">
+      <div class="col-12 col-md-6">
+        <h1 class="mb-3 mb-md-0 text-primary fw-bold">👥 Manage Visitors</h1>
+      </div>
+      <div class="col-12 col-md-6 text-md-end">
+        <select #visitorSelect class="form-select visitorFilter w-100 w-md-auto">
+          <option *ngFor="let option of visitorOptions" [value]="option.value">
+            {{ option.label }}
+          </option>
         </select>
+      </div>
     </div>
+  
     <ng-container *ngIf="visitorsList.length; else NoData">
-        <app-shared-table (updateExitVisitorTime)="exitVisitor($event)" (updateVisitorRequest)="updateVisitorRequest($event)" (onDeleteVisitor)="deleteVisitor($event)"[tableData]="visitorsList" [columns]="columns" [pageSize]="5"></app-shared-table>
+      <app-shared-table
+        (updateExitVisitorTime)="exitVisitor($event)"
+        (updateVisitorRequest)="updateVisitorRequest($event)"
+        (onDeleteVisitor)="deleteVisitor($event)"
+        [tableData]="visitorsList"
+        [columns]="columns"
+        [pageSize]="5"
+      ></app-shared-table>
     </ng-container>
+  
     <ng-template #NoData>
-        <p>No Data Found</p>
+      <div class="text-center text-muted mt-5">
+        <i class="bi bi-exclamation-circle" style="font-size: 2rem;"></i>
+        <p class="mt-2 fs-5">No Data Found</p>
+      </div>
     </ng-template>
-</div>
-
-
-	<!-- Modal -->
-    <app-confirmation-dialog-box
+  </div>
+  
+  <!-- Modal -->
+  <app-confirmation-dialog-box
     #confirmationDialogBox
     [title]="'Delete Visitor'"
     [modalId]="'exampleModalLive1'"
@@ -27,5 +42,3 @@
     (operation)="performOperation($event)"
   ></app-confirmation-dialog-box>
   
-
-

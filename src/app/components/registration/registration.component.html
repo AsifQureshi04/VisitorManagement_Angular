@@ -1,48 +1,56 @@
 <div class="route" id="welcome"></div>
-<div id="app">
-  <div class="app-view">  
+<div class="app-container">
+  <div id="app">
+    <div class="logo-wrapper">
+      <img src="assets/logo.png" alt="AWC Logo" />
+    </div>
+    
     <header class="app-header">
       <h1>Visitor Management System</h1>
-      <h3>Welcome,
-      <span class="app-subheading">Register as new user</span></h3>
+      <h3>Welcome, <span class="app-subheading">Register as a new user</span></h3>
     </header>
-    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-        <input formControlName="firstName" type="text" placeholder="First Name"/>
-        <div *ngIf="signupForm.get('firstName')!.invalid && signupForm.get('firstName')!.touched">
-            <small>Please enter first name</small>
-        </div>
 
-      <input formControlName="lastName" type="text" placeholder="Last Name"/>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <input formControlName="firstName" type="text" placeholder="First Name" />
+      <div *ngIf="signupForm.get('firstName')!.invalid && signupForm.get('firstName')!.touched">
+        <small>Please enter first name</small>
+      </div>
+
+      <input formControlName="lastName" type="text" placeholder="Last Name" />
       <div *ngIf="signupForm.get('lastName')!.invalid && signupForm.get('lastName')!.touched">
         <small>Please enter last name.</small>
       </div>
 
-       <select formControlName="userRole">
+      <select formControlName="userRole">
         <option value="" disabled selected>Select Role</option>
-        <option *ngFor="let role of userRoles" [value]="role">{{role}}</option>
-       </select>
+        <option *ngFor="let role of userRoles" [value]="role">{{ role }}</option>
+      </select>
       <div *ngIf="signupForm.get('userRole')!.invalid && signupForm.get('userRole')!.touched">
-        <small>Give User's Role</small>
+        <small>Please select a role</small>
       </div>
 
-      <input formControlName="email" type="email" placeholder="Email ID"/>
+      <input formControlName="email" type="email" placeholder="Email ID" />
       <div *ngIf="signupForm.get('email')!.invalid && signupForm.get('email')!.touched">
         <small>Email is required.</small>
       </div>
-      
-      <input formControlName="password" type="password" placeholder="Password"/>
+
+      <input formControlName="password" type="password" placeholder="Password" />
       <div *ngIf="signupForm.get('password')!.invalid && signupForm.get('password')!.touched">
         <small>Password is required.</small>
       </div>
 
-      <input formControlName="confirmPassword" type="password" placeholder="Confirm Password"/>
+      <input formControlName="confirmPassword" type="password" placeholder="Confirm Password" />
       <div *ngIf="signupForm.get('confirmPassword')!.invalid && signupForm.get('confirmPassword')!.touched">
         <small>Confirm password is required.</small>
       </div>
+
       <button type="submit" class="app-button" [disabled]="signupForm.invalid">Signup</button>
     </form>
+
     <div class="login">
-        <p>Already have an account?<button (click)="redirectTo()">Sign in</button></p>
+      <p>Already have an account?
+        <button (click)="redirectTo()">Sign in</button>
+      </p>
     </div>
   </div>
 </div>

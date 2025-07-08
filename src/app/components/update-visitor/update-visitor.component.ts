@@ -14,7 +14,7 @@ export class UpdateVisitorComponent implements OnInit {
   visitorId:string | null = null;
   visitForm! : FormGroup
   isFormSubmitted: boolean = false;
-  visitorsList = []
+  visitorDetails : any
   columns: any[] = []
 
   constructor(private route: ActivatedRoute,
@@ -51,14 +51,14 @@ export class UpdateVisitorComponent implements OnInit {
     //     this.visitForm.get(controlName)?.disable();
     //   }
     // })
-    this.getAllVisitorBy();
+    this.getVisitorById();
   }
 
   get f() {
     return this.visitForm.controls;
   }
 
-  getAllVisitorBy(){
+  getVisitorById(){
     const payload = {
       "visitorId": this.visitorId
     }
@@ -68,11 +68,11 @@ export class UpdateVisitorComponent implements OnInit {
             const [dd, mm, yy] = response.data.visitDate.split('-');
             const formattedDate = `20${yy}-${mm}-${dd}`;
             response.data.visitDate = formattedDate;
-            this.visitorsList = response.data;
-            this.visitForm.patchValue(this.visitorsList);
+            this.visitorDetails = response.data;
+            console.log(this.visitorDetails)
+            this.visitForm.patchValue(this.visitorDetails);
             if(this.visitForm.get('exitTime')?.value.length === 0)
                 this.visitForm.get('exitTime')?.enable()
-            console.log(this.visitorsList)
         }
       },
       error:(error:any)=>{
@@ -124,5 +124,18 @@ export class UpdateVisitorComponent implements OnInit {
     window.location.reload();
     },1000);
   }
+
+  printVisitorDocument() {
+    const printContents = document.getElementById('printSection')?.innerHTML;
+    const originalContents = document.body.innerHTML;
+    
+    if (printContents) {
+      document.body.innerHTML = printContents;
+      window.print();
+      document.body.innerHTML = originalContents;
+      window.location.reload();
+    }
+  }
+  
 
 }

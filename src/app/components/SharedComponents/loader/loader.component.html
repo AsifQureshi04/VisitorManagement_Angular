@@ -1,4 +1,11 @@
 <div class="loader-overlay" *ngIf="loading$ | async">
-    <div class="spinner"></div>
+  <div class="spinner-wrapper">
+    <div class="pulse-wrapper">
+      <div class="spinner"></div>
+    </div>
+    <div class="loading-text">Loading...</div>
+    <button *ngIf="showRetry" (click)="retry()" class="retry-button">
+      Retry
+    </button>
   </div>
-  
+</div>

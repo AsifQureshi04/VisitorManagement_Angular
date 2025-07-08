@@ -11,4 +11,5 @@ export interface AddVisitorPayload {
     reasonToMeet: string
     visitDate: string
     inTime: string
+    isInvited: boolean
   }

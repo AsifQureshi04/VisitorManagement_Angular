@@ -3,9 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { authGuard } from './Guards/auth.guard';
 import { VisitorRequestComponent } from './components/visitor-request/visitor-request.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  { path: '', component:LoginComponent},
+  { path: '', redirectTo: 'Login', pathMatch: 'full'},
+  
+  { path:'Login',component:LoginComponent},
 
   { path: 'Dashboard', loadChildren: () => 
                 import('./components/dashboard/dashboard.module').then(m => m.DashboardModule),
@@ -61,11 +64,10 @@ const routes: Routes = [
 
   { path: 'Registration', loadChildren: () => 
                 import('./components/registration/registration.module').then(m => m.RegistrationModule) },
+                
   { path: 'VisitorRequest', component:VisitorRequestComponent },
 
-  { path:'Login',component:LoginComponent},
-
-  { path:'**', redirectTo:''}
+  { path:'**', component:PageNotFoundComponent}
 
 ];
 

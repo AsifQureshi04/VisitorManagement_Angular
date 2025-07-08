@@ -1,79 +1,147 @@
-#app {
-    width: 80vh;
-    height: auto;
-    padding: 6vh;
-    background: white;
-    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.3);
-    justify-self: center;
-    display: flex;
-    flex-direction: column;
-    place-items: flex-start;
-    margin-top: 100px;
-  }
-
-.app-container {
+.login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  // background-color: #f4f4f4;
+  // background: linear-gradient(to right, #0f9ede, #57c1eb);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-input {
-  font-size: 2.5vh;
-  width: 25rem;
-  height: 7.5vh;
-  margin-bottom: 4vh;
-  border: 1px solid #E3E3E3;
-  padding: 1vh;
-  border-radius: 5px;
+.login-card {
+  background-color: #ffffff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 1.0);
+  width: 100%;
+  max-width: 400px;
 }
 
-button.app-button {
-  text-decoration: none;
-  background-color: #0F9EDE;
-  color: white;
-  font-size: 2.5vh;
-  padding: 1vh 2vh;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
+.login-header {
+  text-align: center;
+  margin-bottom: 30px;
 
-button.app-button:disabled {
-  background-color: #D0DFF0;
-  cursor: not-allowed;
-}
-
-h1{
-  margin-top: auto;
-}
-
-  .login p button{
-    border: none;
-    background:none;
-    color: rgba(53, 53, 250, 0.945);
-  }
-
-small {
-  color: red;
-  font-size: 12px;
-}
-
-input.ng-invalid.ng-touched {
-  border: 1px solid red; 
-}
-
-  .ErrorMessage{
-    background-color: rgb(243, 139, 139);
-    color: white;
-    width: 91%;
-    height: 25px;
+  h1 {
+    font-size: 24px;
+    color: #0f9ede;
     margin-bottom: 10px;
   }
 
-.ErrorMessage p{
-  margin-left: 10px;
-  padding-top: 4px;
+  h3 {
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+
+  .subheading {
+    font-size: 14px;
+    color: #555;
+  }
 }
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  font-size: 14px;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: border-color 0.3s;
+
+  &:focus {
+    border-color: #0f9ede;
+    outline: none;
+  }
+
+  &.ng-invalid.ng-touched {
+    border-color: red;
+  }
+}
+
+small {
+  color: red;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.login-button {
+  background-color: #0f9ede;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+
+  &:hover {
+    background-color: #0c7abf;
+  }
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+}
+
+.signup-link {
+  text-align: center;
+  margin-top: 20px;
+
+  p {
+    font-size: 14px;
+
+    button {
+      background: none;
+      border: none;
+      color: #0f9ede;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+
+      &:hover {
+        color: #0c7abf;
+      }
+    }
+  }
+}
+
+.error-message {
+  background-color: #f44336;
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+
+  p {
+    margin: 0;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .login-card {
+    padding: 30px 20px;
+  }
+
+  input,
+  .login-button {
+    font-size: 14px;
+  }
+}
+
+.logo-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+
+  img {
+    height: 80px;
+    max-width: 100%;
+    object-fit: contain;
+  }
+}
+

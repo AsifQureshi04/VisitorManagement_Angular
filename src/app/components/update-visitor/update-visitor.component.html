@@ -1,98 +1,188 @@
 <div id="print-section">
     <h1>Update Visitor Details</h1>
     <div class="col-md-8">
-        <div class="container mt-4">
-            <form [formGroup]="visitForm" id="visitForm" (ngSubmit)="onSubmit()">
-                <div class="row">
-                    <div class="col-md-6 mb-4">
-                        <label>First Name</label>
-                        <input type="text" class="form-control" formControlName="firstName" />
-                        <small class="text-danger" *ngIf="isFormSubmitted && f['firstName'].invalid">
-                            First Name is required (min 2 char).
-                        </small>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <label>Last Name</label>
-                        <input type="text" class="form-control" formControlName="lastName" />
-                        <small class="text-danger" *ngIf="isFormSubmitted && f['lastName'].invalid">
-                            Last Name is required (min 2 char).
-                        </small>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <label>Email</label>
-                        <input type="email" class="form-control" formControlName="emailId" />
-                        <small class="text-danger" *ngIf="isFormSubmitted && f['emailId'].invalid">
-                            Valid email is required
-                        </small>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <label>Phone Number</label>
-                        <input type="phoneNumber" class="form-control" formControlName="contactNumber" />
-                        <small class="text-danger" *ngIf="isFormSubmitted && f['contactNumber'].invalid">
-                            Enter a valid 10-digit phone number
-                        </small>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <label>Address</label>
-                        <textarea class="form-control" formControlName="address"></textarea>
-                        <small class="text-danger" *ngIf="isFormSubmitted && f['address'].invalid">
-                            Address is required
-                        </small>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <label>Whome To meet</label>
-                        <input type="text" class="form-control" formControlName="whomToMeet" />
-                        <small class="text-danger" *ngIf="isFormSubmitted && f['whomToMeet'].invalid">
-                            The field is required
-                        </small>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <label>Department</label>
-                        <input type="text" class="form-control" formControlName="department" />
-                        <small class="text-danger" *ngIf="isFormSubmitted && f['department'].invalid">
-                            Departmet is required
-                        </small>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <label>Reason to Meet</label>
-                        <input type="text" class="form-control" formControlName="reasonToMeet" />
-                        <small class="text-danger" *ngIf="isFormSubmitted && f['reasonToMeet'].invalid">
-                            Reason is required
-                        </small>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <label>Visit Date</label>
-                        <input type="date" class="form-control" formControlName="visitDate" />
-                        <small class="text-danger" *ngIf="isFormSubmitted && f['visitDate'].invalid">
-                            Date is required
-                        </small>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <label>In-Time</label>
-                        <input type="time" class="form-control" formControlName="inTime" />
-                        <small class="text-danger" *ngIf="isFormSubmitted && f['inTime'].invalid">
-                            Time is required
-                        </small>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <label>Out-Time</label>
-                        <input type="time" class="form-control" formControlName="exitTime" />
-                        <small class="text-danger" *ngIf="isFormSubmitted && f['exitTime'].invalid">
-                            Time is required
-                        </small>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between">
-        
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
-            <!-- <button class="btn btn-primary print" (click)="printPage()">
-                <i class="bi bi-printer"></i> Print
-            </button> -->
-        </div>
+      <div class="container mt-4">
+        <form [formGroup]="visitForm" id="visitForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <label>First Name</label>
+              <input type="text" class="form-control" formControlName="firstName" />
+              <small class="text-danger" *ngIf="isFormSubmitted && f['firstName'].invalid">
+                First Name is required (min 2 char).
+              </small>
+            </div>
+  
+            <div class="col-md-6 mb-4">
+              <label>Last Name</label>
+              <input type="text" class="form-control" formControlName="lastName" />
+              <small class="text-danger" *ngIf="isFormSubmitted && f['lastName'].invalid">
+                Last Name is required (min 2 char).
+              </small>
+            </div>
+  
+            <div class="col-md-6 mb-4">
+              <label>Email</label>
+              <input type="email" class="form-control" formControlName="emailId" />
+              <small class="text-danger" *ngIf="isFormSubmitted && f['emailId'].invalid">
+                Valid email is required
+              </small>
+            </div>
+  
+            <div class="col-md-6 mb-4">
+              <label>Phone Number</label>
+              <input type="tel" class="form-control" formControlName="contactNumber" />
+              <small class="text-danger" *ngIf="isFormSubmitted && f['contactNumber'].invalid">
+                Enter a valid 10-digit phone number
+              </small>
+            </div>
+  
+            <div class="col-md-6 mb-4">
+              <label>Address</label>
+              <textarea class="form-control" formControlName="address"></textarea>
+              <small class="text-danger" *ngIf="isFormSubmitted && f['address'].invalid">
+                Address is required
+              </small>
+            </div>
+  
+            <div class="col-md-6 mb-4">
+              <label>Whom To Meet</label>
+              <input type="text" class="form-control" formControlName="whomToMeet" />
+              <small class="text-danger" *ngIf="isFormSubmitted && f['whomToMeet'].invalid">
+                This field is required
+              </small>
+            </div>
+  
+            <div class="col-md-6 mb-4">
+              <label>Department</label>
+              <input type="text" class="form-control" formControlName="department" />
+              <small class="text-danger" *ngIf="isFormSubmitted && f['department'].invalid">
+                Department is required
+              </small>
+            </div>
+  
+            <div class="col-md-6 mb-4">
+              <label>Reason to Meet</label>
+              <input type="text" class="form-control" formControlName="reasonToMeet" />
+              <small class="text-danger" *ngIf="isFormSubmitted && f['reasonToMeet'].invalid">
+                Reason is required
+              </small>
+            </div>
+  
+            <div class="col-md-6 mb-4">
+              <label>Visit Date</label>
+              <input type="date" class="form-control" formControlName="visitDate" />
+              <small class="text-danger" *ngIf="isFormSubmitted && f['visitDate'].invalid">
+                Date is required
+              </small>
+            </div>
+  
+            <div class="col-md-6 mb-4">
+              <label>In-Time</label>
+              <input type="time" class="form-control" formControlName="inTime" />
+              <small class="text-danger" *ngIf="isFormSubmitted && f['inTime'].invalid">
+                Time is required
+              </small>
+            </div>
+  
+            <div class="col-md-6 mb-4">
+              <label>Out-Time</label>
+              <input type="time" class="form-control" formControlName="exitTime" />
+              <small class="text-danger" *ngIf="isFormSubmitted && f['exitTime'].invalid">
+                Time is required
+              </small>
+            </div>
+          </div>
+  
+          <div class="d-flex justify-content-between mt-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+  
+            <button type="button" class="btn btn-secondary" (click)="printVisitorDocument()">
+              <i class="bi bi-printer"></i> Print
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-</div>
+  </div>
+  
 
+
+<div id="printSection" style="display: none; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px; line-height: 1.6; color: #000; font-size: 14px;">
+
+    <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #000; padding-bottom: 10px; margin-bottom: 30px;">
+      <div>
+        <img src="assets/logo.png" alt="AWC Logo" style="height: 80px;" />
+      </div>
+      <div style="text-align: right;">
+        <h2 style="margin: 0;">AWC Software Pvt. Ltd.</h2>
+        <p style="margin: 0;">Visitor Management Department</p>
+      </div>
+    </div>
+  
+    <h3 style="text-align: center; text-decoration: underline; margin-bottom: 30px;">Visitor Meeting Acknowledgment</h3>
+  
+    <p>This is to formally acknowledge that the following individual visited our premises on <strong>{{ visitorDetails.visitDate }}</strong> and met with the designated official as per the details provided below:</p>
+  
+    <table style="width: 100%; margin-top: 20px; border-collapse: collapse;">
+      <tr>
+        <td style="padding: 8px;"><strong>Visitor Name:</strong></td>
+        <td style="padding: 8px;">{{ visitorDetails.firstName }} {{ visitorDetails.lastName }}</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px;"><strong>Contact Number:</strong></td>
+        <td style="padding: 8px;">{{ visitorDetails.contactNumber }}</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px;"><strong>Email ID:</strong></td>
+        <td style="padding: 8px;">{{ visitorDetails.emailId }}</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px;"><strong>Department:</strong></td>
+        <td style="padding: 8px;">{{ visitorDetails.department }}</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px;"><strong>Reason for Visit:</strong></td>
+        <td style="padding: 8px;">{{ visitorDetails.reasonToMeet }}</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px;"><strong>Whom to Meet:</strong></td>
+        <td style="padding: 8px;">{{ visitorDetails.whomToMeet }}</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px;"><strong>In Time:</strong></td>
+        <td style="padding: 8px;">{{ visitorDetails.inTime }}</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px;"><strong>Exit Time:</strong></td>
+        <td style="padding: 8px;">{{ visitorDetails.exitTime }}</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px;"><strong>Address:</strong></td>
+        <td style="padding: 8px;">{{ visitorDetails.address }}</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px;"><strong>Visitor Pass ID:</strong></td>
+        <td style="padding: 8px;">{{ visitorDetails.visitorPass }}</td>
+      </tr>
+    </table>
+  
+    <p style="margin-top: 40px;">
+      The above-mentioned visitor has completed their scheduled visit and met with the designated official. This document serves as an official proof of visit.
+    </p>
+  
+    <div style="display: flex; justify-content: space-between; margin-top: 80px;">
+      <div style="text-align: center;">
+        ___________________________<br>
+        <strong>Visitor Signature</strong>
+      </div>
+  
+      <div style="text-align: center;">
+        ___________________________<br>
+        <strong>Signature of {{ visitorDetails.whomToMeet }}</strong><br>
+        Visiting Official
+      </div>
+    </div>
+  </div>
+  
 
 

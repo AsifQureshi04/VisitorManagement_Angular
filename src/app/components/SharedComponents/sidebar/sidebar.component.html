@@ -6,12 +6,24 @@
     <div class="sidebar-content">
       <div *ngFor="let item of menuItem" class="sidebar-item">
         
-        <div *ngIf="item.subMenuItem.length === 0" (click)="redirectTo(item.menuRoute)">
+        <div 
+            *ngIf="item.subMenuItem.length === 0" 
+            (click)="redirectTo(item.menuRoute)"
+            [ngClass]="{
+              'hover-highlight': true,
+              'active-item': selectedRoute === item.menuRoute
+            }">
           <i class="bi" [ngClass]="item.menuIcon"></i>
           <span *ngIf="sidebarShow">{{ item.menuName }}</span>
         </div>
   
-        <div *ngIf="item.subMenuItem.length > 0" class="role-management">
+        <div 
+            *ngIf="item.subMenuItem.length > 0" 
+            class="role-management"
+            [ngClass]="{
+              'hover-highlight': true,
+              'active-item': selectedRoute === item.menuRoute
+            }">
           <div class="role-main">
             <div class="role-label" (click)="redirectTo(item.menuRoute)">
               <i class="bi" [ngClass]="item.menuIcon"></i>
@@ -28,7 +40,15 @@
           </div>
   
           <div class="role-subitems" *ngIf="roleDropdown && sidebarShow">
-            <div *ngFor="let sub of item.subMenuItem" class="role-subitem" (click)="redirectTo(sub.subMenuRoute)">
+            <div 
+                *ngFor="let sub of item.subMenuItem" 
+                class="role-subitem" 
+                (click)="redirectTo(sub.subMenuRoute)"
+                [ngClass]="{
+                  'hover-highlight': true,
+                  'active-item': selectedRoute === sub.subMenuRoute
+                  }"
+                >
               <i class="bi" [ngClass]="sub.subMenuIcon"></i>
               <span>{{ sub.subMenuName }}</span>
             </div>

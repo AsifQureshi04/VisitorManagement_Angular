@@ -1,108 +1,128 @@
-<h1>Add Visitor</h1>
-<div class="col-md-8">
-    <div class="container mt-4">
-        <form [formGroup]="visitorForm" (ngSubmit)="onSubmit()">
-            <div class="row">
+w<div class="visitor-form-wrapper">
+    <h2 class="form-title">📝 Add New Visitor</h2>
+  
+    <div class="form-card">
+      <form [formGroup]="visitorForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <!-- First Name -->
+          <div class="col-md-6 mb-3">
+            <label>First Name</label>
+            <input type="text" class="form-control" formControlName="firstName" />
+            <small class="error" *ngIf="isFormSubmitted && f['firstName'].invalid">
+              First Name is required (min 2 characters).
+            </small>
+          </div>
+  
+          <!-- Last Name -->
+          <div class="col-md-6 mb-3">
+            <label>Last Name</label>
+            <input type="text" class="form-control" formControlName="lastName" />
+            <small class="error" *ngIf="isFormSubmitted && f['lastName'].invalid">
+              Last Name is required (min 2 characters).
+            </small>
+          </div>
+  
+          <!-- Email -->
+          <div class="col-md-6 mb-3">
+            <label>Email</label>
+            <input type="email" class="form-control" formControlName="email" />
+            <small class="error" *ngIf="isFormSubmitted && f['email'].invalid">
+              Enter a valid email address.
+            </small>
+          </div>
+  
+          <!-- Phone -->
+          <div class="col-md-6 mb-3">
+            <label>Phone Number</label>
+            <input type="tel" class="form-control" formControlName="phoneNumber" maxlength="10"/>
+            <small class="error" *ngIf="isFormSubmitted && f['phoneNumber'].invalid">
+              Enter a valid 10-digit phone number.
+            </small>
+          </div>
+  
+          <!-- Address -->
+          <div class="col-md-12 mb-3">
+            <label>Address</label>
+            <textarea rows="2" class="form-control" formControlName="address"></textarea>
+            <small class="error" *ngIf="isFormSubmitted && f['address'].invalid">
+              Address is required.
+            </small>
+          </div>
+  
+          <!-- Whom to Meet -->
+          <div class="col-md-6 mb-3">
+            <label>Whom to Meet</label>
+            <input type="text" class="form-control" formControlName="whomToMeet" />
+            <small class="error" *ngIf="isFormSubmitted && f['whomToMeet'].invalid">
+              This field is required.
+            </small>
+          </div>
 
-                <div class="col-md-6 mb-4">
-                    <label>First Name</label>
-                    <input type="text" class="form-control" formControlName="firstName" />
-                    <small class="text-danger" *ngIf="isFormSubmitted && f['firstName'].invalid">
-                        First Name is required (min 2 char).
-                    </small>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <label>Last Name</label>
-                    <input type="text" class="form-control" formControlName="lastName" />
-                    <small class="text-danger" *ngIf="isFormSubmitted && f['lastName'].invalid">
-                        Last Name is required (min 2 char).
-                    </small>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <label>Email</label>
-                    <input type="email" class="form-control" formControlName="email" />
-                    <small class="text-danger" *ngIf="isFormSubmitted && f['email'].invalid">
-                        Valid email is required
-                    </small>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <label>Phone Number</label>
-                    <input type="phoneNumber" class="form-control" formControlName="phoneNumber" maxlength="10"/>
-                    <small class="text-danger" *ngIf="isFormSubmitted && f['phoneNumber'].invalid">
-                        Enter a valid 10-digit phone number
-                    </small>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <label>Address</label>
-                    <textarea class="form-control" formControlName="address"></textarea>
-                    <small class="text-danger" *ngIf="isFormSubmitted && f['address'].invalid">
-                        Address is required
-                    </small>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <label>Whom To meet</label>
-                    <input type="text" class="form-control" formControlName="whomToMeet" />
-                    <small class="text-danger" *ngIf="isFormSubmitted && f['whomToMeet'].invalid">
-                        The field is required
-                    </small>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <label>Department</label>
-                    <select formControlName="department" class="form-control">
-                        <option value="" disabled selected>Select department</option>
-                        <option *ngFor="let department of departments" [value]="department.departmentName">{{department.departmentName}}</option>
-                    </select>
-                    <div class="text-danger" *ngIf="isFormSubmitted && f['department'].invalid">
-                    <small>select department</small>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <label>Reason to Meet</label>
-                    <input type="text" class="form-control" formControlName="reasonToMeet" />
-                    <small class="text-danger" *ngIf="isFormSubmitted && f['reasonToMeet'].invalid">
-                        Reason is required
-                    </small>
-                </div>
+          <!-- Govt ID -->
+          <div class="col-md-6 mb-3">
+            <label>Govt Issued ID</label>
+            <select class="form-control" formControlName="VisitorId">
+              <option value="" disabled selected>Select ID Type</option>
+              <option *ngFor="let id of Ids" [value]="id.idProofType">{{ id.idProofType }}</option>
+            </select>
+            <small class="error" *ngIf="isFormSubmitted && f['VisitorId'].invalid">
+              Please select an ID.
+            </small>
+          </div>
 
-                <div class="col-md-6 mb-4">
-                    <label>Visitor Govt Issued Id</label>
-                    <select formControlName="VisitorId" class="form-control">
-                        <option value="" disabled selected>Select Id</option>
-                        <option *ngFor="let Id of Ids" [value]="Id.idProofType">{{Id.idProofType}}</option>
-                    </select>
-                    <div class="text-danger" *ngIf="isFormSubmitted && f['VisitorId'].invalid">
-                    <small>select Id</small>
-                    </div>
-                </div>
+          <!-- Department -->
+          <div class="col-md-6 mb-3">
+            <label>Department</label>
+            <select class="form-control" formControlName="department">
+              <option value="" disabled selected>Select Department</option>
+              <option *ngFor="let dept of departments" [value]="dept.departmentName">{{ dept.departmentName }}</option>
+            </select>
+            <small class="error" *ngIf="isFormSubmitted && f['department'].invalid">
+              Please select a department.
+            </small>
+          </div>
 
-                <div class="col-md-6 mb-4">
-                    <label>Selected Id Number</label>
-                    <input type="text" class="form-control" formControlName="IdNumber" />
-                    <small class="text-danger" *ngIf="isFormSubmitted && f['IdNumber'].invalid">
-                        Id number is required
-                    </small>
-                </div>
+          <!-- ID Number -->
+          <div class="col-md-6 mb-3">
+            <label>ID Number</label>
+            <input type="text" class="form-control" formControlName="IdNumber" />
+            <small class="error" *ngIf="isFormSubmitted && f['IdNumber'].invalid">
+              ID Number is required.
+            </small>
+          </div>
 
-
-                <div class="col-md-6 mb-4">
-                    <label>Date</label>
-                    <input type="date" class="form-control" formControlName="date" />
-                    <small class="text-danger" *ngIf="isFormSubmitted && f['date'].invalid">
-                        Date is required
-                    </small>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <label>In-Time</label>
-                    <input type="time" class="form-control" formControlName="inTime" />
-                    <small class="text-danger" *ngIf="isFormSubmitted && f['inTime'].invalid">
-                        Time is required
-                    </small>
-                </div>
-
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+          <!-- Reason -->
+          <div class="col-md-6 mb-3">
+            <label>Reason to Meet</label>
+            <input type="text" class="form-control" formControlName="reasonToMeet" />
+            <small class="error" *ngIf="isFormSubmitted && f['reasonToMeet'].invalid">
+              Reason is required.
+            </small>
+          </div>
+  
+          <!-- Date -->
+          <div class="col-md-3 mb-3">
+            <label>Date</label>
+            <input type="date" class="form-control" formControlName="date" />
+            <small class="error" *ngIf="isFormSubmitted && f['date'].invalid">
+              Date is required.
+            </small>
+          </div>
+  
+          <!-- In-Time -->
+          <div class="col-md-3 mb-3">
+            <label>In-Time</label>
+            <input type="time" class="form-control" formControlName="inTime" />
+            <small class="error" *ngIf="isFormSubmitted && f['inTime'].invalid">
+              Time is required.
+            </small>
+          </div>
+        </div>
+  
+        <div class="text-center mt-4">
+          <button type="submit" class="btn btn-lg btn-primary px-5">Add Visitor</button>
+        </div>
+      </form>
     </div>
-</div>
-
-
+  </div>
+  

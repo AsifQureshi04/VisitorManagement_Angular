@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { AddVisitorPayload } from 'src/app/Models/AddVisitorPayload';
 import { NotifyVisitorService } from 'src/app/services/notify-visitor.service';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-visitor-request',
@@ -22,6 +23,12 @@ export class VisitorRequestComponent {
   isFormSubmitted: boolean = false;
   departments: any;
   Ids: any;
+  visitorData :any = {
+    firstName:"",
+    lastName :"",
+    email:"",
+    address:""
+  };
 
   constructor(private fb : FormBuilder,
                 private visitor : VisitorManagementService,
@@ -101,6 +108,7 @@ export class VisitorRequestComponent {
           reasonToMeet:this.visitorForm.get('reasonToMeet')?.value,
           visitDate:this.visitorForm.get('date')?.value,
           inTime: this.visitorForm.get('inTime')?.value,
+          isInvited: false
         }
   
         await this.visitor.addVisitor(payload).subscribe({
@@ -119,8 +127,7 @@ export class VisitorRequestComponent {
         });
       }else{
         console.log('Form is invalid');
-        this.toastr.error('All required fields are not given');
-  
+        this.toastr.error('All required fields are not given');  
       }
     }
   
@@ -162,5 +169,36 @@ export class VisitorRequestComponent {
   isValidEmail(email: string): boolean {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
     return emailPattern.test(email);
+  }
+
+  onPhoneNumberChange(){
+    const contactNo = this.visitorForm.get('phoneNumber')?.value
+    if(contactNo && contactNo.length === 10){
+      this.getVisitorDetailsContactNo(contactNo);
+    }
+  }
+
+  getVisitorDetailsContactNo(contactNo:string){
+    const payload = 
+      {
+        "contactNo": contactNo
+      }
+    this.visitor.getVisitorDetailsContactNo(payload).subscribe({
+      next :(response:any)=>{
+        if(response?.token === 1 && response.statusCode === '200'){
+          this.visitorData = response.data
+          console.log(this.visitorData);
+          this.visitorForm.get('firstName')?.setValue(this.visitorData.firstName);
+          this.visitorForm.get('lastName')?.setValue(this.visitorData.lastName);
+          this.visitorForm.get('email')?.setValue(this.visitorData.email);
+          this.visitorForm.get('address')?.setValue(this.visitorData.address);
+          this.visitorForm.get('VisitorId')?.setValue(this.visitorData.idTpye);
+          this.visitorForm.get('IdNumber')?.setValue(this.visitorData.idNumber);
+        }
+      },
+      error:(error:any)=>{
+
+      }
+    }) 
   }
 }

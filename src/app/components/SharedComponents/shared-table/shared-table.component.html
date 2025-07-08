@@ -1,5 +1,6 @@
-<div class="container">
-  <div class="table-container">
+<div class="main-content" [class.sidebar-collapsed]="!sidebarShow">
+  <div class="table-card">
+    <div class="table-container">
     <table>
       <thead>
         <tr>
@@ -24,8 +25,8 @@
             </ng-container>
             <ng-template #actionIcons>
               <div class="action-menu-container">
-                <i class="fa fa-bars menu-icon" (click)="row.showMenu = !row.showMenu"></i>
-                <div class="dropdown-menu" *ngIf="row.showMenu">
+                <i class="fa fa-bars menu-icon" (click)="toggleRowMenu(row)"></i>
+                <div class="dropdown-menu" *ngIf="activeMenuRow === row">
                   <div class="dropdown-item" (click)="updateVisitor(row)">
                     <i class="fa fa-edit"></i> Edit
                   </div>
@@ -38,7 +39,7 @@
                   <div class="dropdown-item" (click)="updateRequest(row,'Rejected')">
                     <i class="fa fa-times"></i> Reject
                   </div>
-                  <div class="dropdown-item" (click)="exitVisitor(row)">
+                  <div class="dropdown-item" *ngIf="row['Status'] === 'Approved'" (click)="exitVisitor(row)">
                     <i class="fa fa-times"></i> Exit
                   </div>
                 </div>
@@ -57,5 +58,6 @@
       <button (click)="lastPage()" [disabled]="currentPage === totalPages">Last</button>
     </div>
   </div>
-  
 </div>
+</div>
+

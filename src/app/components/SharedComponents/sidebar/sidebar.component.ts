@@ -10,13 +10,14 @@ import { VisitorManagementService } from 'src/app/services/visitor-management.se
 export class SidebarComponent implements OnInit {
   selectedItem: string = '';
   roleDropdownOpen: boolean = false;
-  sidebarShow: boolean = true;
+  sidebarShow: boolean = false;
   roleDropdown: boolean = false;
   menuItem: any;
-  
+  selectedRoute: string = '';
+
 
   constructor(private router : Router,
-              private visitorService : VisitorManagementService
+              private visitorService : VisitorManagementService,
   ) {}
 
 
@@ -26,6 +27,7 @@ export class SidebarComponent implements OnInit {
 
   redirectTo(route: string) {
     console.log(route);
+    this.selectedRoute = route;
     this.router.navigate([route]);
   }
 

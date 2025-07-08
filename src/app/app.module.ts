@@ -18,6 +18,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './Interceptor/loading.interceptor';
 import { LoaderComponent } from './components/SharedComponents/loader/loader.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LoaderComponent } from './components/SharedComponents/loader/loader.com
     LoginComponent,
     VisitorRequestComponent,
     DialogContentComponent,
-    LoaderComponent
+    LoaderComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -40,25 +42,25 @@ import { LoaderComponent } from './components/SharedComponents/loader/loader.com
     MatDialogModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      positionClass:'toast-bottom-custom',
-      timeOut:2000,
-      closeButton:true,
-      maxOpened:1,
-      preventDuplicates:true,
-      enableHtml:true
+      positionClass: 'toast-bottom-custom',
+      timeOut: 2000,
+      closeButton: true,
+      maxOpened: 1,
+      preventDuplicates: true,
+      enableHtml: true
     }),
 
   ],
   providers: [
     {
-      provide:HTTP_INTERCEPTORS,
-      useClass:JwtInterceptor,
-      multi:true  
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
     },
     {
-      provide:HTTP_INTERCEPTORS,
-      useClass:LoadingInterceptor,
-      multi:true  
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]

@@ -13,9 +13,11 @@ export class SharedTableComponent implements OnInit, OnChanges {
   @Output() onDeleteVisitor = new EventEmitter<any>();
   @Output() updateVisitorRequest = new EventEmitter<any>();
   @Output() updateExitVisitorTime = new EventEmitter<any>();
-
+  sidebarShow:boolean = false;
   currentPage: number = 1;
   totalPages: number = 1;
+  activeMenuRow: any = null;
+
 
   constructor(private router : Router) {
     
@@ -73,7 +75,6 @@ export class SharedTableComponent implements OnInit, OnChanges {
     this.onDeleteVisitor.emit(visitor);
     console.log(visitor)
     visitor.showMenu = !visitor.showMenu
-
   }
 
   updateRequest(visitor : any, status : string){
@@ -85,6 +86,14 @@ export class SharedTableComponent implements OnInit, OnChanges {
   exitVisitor(row:any){
     console.log(row)
     this.updateExitVisitorTime.emit(row)
+  }
+
+  toggleRowMenu(row: any): void {
+    if (this.activeMenuRow === row) {
+      this.activeMenuRow = null;
+    } else {
+      this.activeMenuRow = row;
+    }
   }
 
 }

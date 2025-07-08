@@ -84,6 +84,11 @@ export class ManageVisitorComponent implements OnInit{
       },
       error:(error:any)=>{
         console.log('error',error);
+        if(error.name === "HttpErrorResponse"){
+          this.toastr.error("Server is down. Retry after some time");
+        }else{
+          this.toastr.error("Some technical issue. Retry after some time");          
+        }
       }
     });
   }
@@ -160,7 +165,32 @@ export class ManageVisitorComponent implements OnInit{
   }
 
   exitVisitor(event:Event){
-    
+    console.log(event);
+    this.selectedVisitor = event;
+    const now = new Date();
+    const exitTime = now.toTimeString().split(' ')[0];
+    const payload = {
+      "visitorId":  this.selectedVisitor['Visitor Id'],
+      "exitTime": exitTime
+  }
+  this.visitor.updateVisitor(payload).subscribe({
+    next:(response:any)=>{
+      if(response.token === 1 && response.statusCode === '200'){
+        this.toastr.success('Visitor updated successfully!');
+        // this.visitForm.get('exitTime')?.disable();
+        this.visitorsList = this.visitorsList.map(v =>
+          v['Visitor Id'] === this.selectedVisitor['Visitor Id']
+            ? { ...v, ['Exit Time']: payload.exitTime }
+            : v
+        );
+      }else{
+        this.toastr.warning('Some technical issue while updating visitor');
+      }
+    },
+    error:(error:any)=>{
+      this.toastr.error('Error while updating visitor');
+    }
+  })
   }
   
 }

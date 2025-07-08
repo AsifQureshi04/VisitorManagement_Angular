@@ -1,27 +1,35 @@
-<div class="route" id="welcome"></div>
-<div id="app">
-  <div class="app-view">  
-    <header class="app-header">
+<div class="login-container">
+  <div class="login-card">
+    <div class="logo-wrapper">
+      <img src="assets/logo.png" alt="AWC Logo" />
+    </div>
+    
+    <header class="login-header">
       <h1>Visitor Management System</h1>
-      <h3>Welcome back,
-        <span class="app-subheading">Sign in to continue</span></h3>
-        <div *ngIf="errorMessage" class="ErrorMessage"><p>{{errorMessage}}</p></div>
+      <h3>Welcome back</h3>
+      <p class="subheading">Sign in to continue</p>
     </header>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <input formControlName="UserId" type="text" placeholder="Enter Email Address/User Id"/>
+
+    <div *ngIf="errorMessage" class="error-message">
+      <p>{{ errorMessage }}</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <input formControlName="UserId" type="text" placeholder="Email Address / User ID" />
       <div *ngIf="loginForm.get('UserId')!.invalid && loginForm.get('UserId')!.touched">
-        <small>Please enter email/UserId.</small>
+        <small>Please enter a valid email/User ID.</small>
       </div>
-      
-      <input formControlName="password" type="password" placeholder="Password"/>
+
+      <input formControlName="password" type="password" placeholder="Password" />
       <div *ngIf="loginForm.get('password')!.invalid && loginForm.get('password')!.touched">
         <small>Password is required.</small>
       </div>
-      
-      <button type="submit" class="app-button" [disabled]="loginForm.invalid">Login</button>
+
+      <button type="submit" class="login-button" [disabled]="loginForm.invalid">Login</button>
     </form>
-    <div class="login">
-      <p>New User? <button (click)="userRegistration()">Signup</button></p>
+
+    <div class="signup-link">
+      <p>New User? <button (click)="userRegistration()">Sign up</button></p>
     </div>
   </div>
 </div>

@@ -151,4 +151,17 @@ export class VisitorManagementService {
       })
     )
   }
+
+  getVisitorDetailsContactNo(payload : any){
+    return this.http.post<any>(`${this.baseUrl}ManageVisitors/GetVisitorDetailByContact`,payload).pipe(
+      map(response =>{
+        if(response.token === 1 && response.statusCode === '200'){
+            return response;
+        }
+      }),
+      catchError(error=>{
+        return throwError(()=>error)
+      })
+    )
+  }
 }
